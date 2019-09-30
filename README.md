@@ -40,7 +40,11 @@ import com.nianxy.simplesifter;
 
 // 创建一个WordSifter对象
 WordSifter wordSifter = new WordSifter();
+
+// 加载过滤词列表，可以是段文本，每行一个过滤词
 wordSifter.loadWords(words);
+// 或是一个过滤词列表
+// wordSifter.loadWords(List<String> words);
 
 // 打印DFA结点，可用于调试
 wordSifter.printRoot();
