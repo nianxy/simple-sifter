@@ -61,3 +61,27 @@ String filtered = filter.filter("some text");
 // filter对象可以重复使用，每次都可以通过setReplaceStr()设置不同的替换字符串
 // 但它并不是线程安全的，如果请在不同线程内创建单独的filter对象
 ```
+
+### 性能测试
+简单做了一下性能测试，用例如下：
+- 1000个过滤词
+- 100,000个字符的文本源
+- 完成不同次数的过滤
+
+测试环境：我的2016款MacbookPro
+
+测试结果：
+```bash
+# 第1次测试
+Loops:10, time cost(ms):194, avg(ms):19.4
+Loops:100, time cost(ms):405, avg(ms):4.05
+Loops:1000, time cost(ms):3088, avg(ms):3.088
+# 第2次测试
+Loops:10, time cost(ms):205, avg(ms):20.5
+Loops:100, time cost(ms):419, avg(ms):4.19
+Loops:1000, time cost(ms):3172, avg(ms):3.172
+# 第3次测试
+Loops:10, time cost(ms):177, avg(ms):17.7
+Loops:100, time cost(ms):418, avg(ms):4.18
+Loops:1000, time cost(ms):3149, avg(ms):3.149
+```

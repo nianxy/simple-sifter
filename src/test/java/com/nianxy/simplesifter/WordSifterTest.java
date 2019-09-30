@@ -95,6 +95,15 @@ public class WordSifterTest {
         return new String(content.toByteArray(), "utf8");
     }
 
+    private void doFilterLoop(WordSifter.Filter filter, String doc, int count) {
+        long tm = System.currentTimeMillis();
+        for (int i=0; i<count; ++i) {
+            filter.filter(doc);
+        }
+        long tm2 = System.currentTimeMillis();
+        System.out.println("Loops:" + count + ", time cost(ms):" + (tm2-tm) + ", avg(ms):" + (tm2-tm)*1.0/count);
+    }
+
     @Test
     public void testCap1() throws IOException {
         // 1000个关键词
@@ -111,13 +120,8 @@ public class WordSifterTest {
 
         WordSifter.Filter filter = wordSifter.createFilter();
 
-        final int LoopCount = 1000;
-
-        long tm = System.currentTimeMillis();
-        for (int i=0; i<LoopCount; ++i) {
-            filter.filter(doc);
-        }
-
-        System.out.println("Loop count:" + LoopCount + ", time cost(ms):" + (System.currentTimeMillis()-tm));
+        doFilterLoop(filter, doc, 10);
+        doFilterLoop(filter, doc, 100);
+        doFilterLoop(filter, doc, 1000);
     }
 }
