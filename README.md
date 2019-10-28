@@ -16,7 +16,7 @@
 ```
 
 ### 参考
-[《敏感词过滤的算法原理之DFA算法》](https://blog.csdn.net/cdj0311/article/details/79789480)
+[《敏感词过滤的算法原理之DFA算法》](https://blog.csdn.net/chenssy/article/details/26961957)
 
 ### 对于参考算法的改进
 上述参考文章算法并不完善，因为无法处理以下情况：
@@ -59,7 +59,7 @@ filter.setReplaceStr("###");
 String filtered = filter.filter("some text");
 
 // filter对象可以重复使用，每次都可以通过setReplaceStr()设置不同的替换字符串
-// 但它并不是线程安全的，如果请在不同线程内创建单独的filter对象
+// 但它并不是线程安全的，请在不同线程内通过wordSifter.createFilter()创建单独的filter对象
 ```
 
 ### 性能测试
